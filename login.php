@@ -6,18 +6,18 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="shortcut icon" href="images/favicon.png"/>
+	<link rel="shortcut icon" href="admin/images/favicon.png"/>
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'/>
 
 	<!-- Styling -->
-	<link rel="stylesheet" href="addons/bootstrap/css/bootstrap.css"/>
-	<link rel="stylesheet" href="addons/toastr/toastr.min.css"/>
-	<link rel="stylesheet" href="addons/fontawesome/css/font-awesome.css"/>
-	<link rel="stylesheet" href="addons/ionicons/css/ionicons.css"/>
-	<link rel="stylesheet" href="addons/noUiSlider/nouislider.min.css"/>
+	<link rel="stylesheet" href="admin/addons/bootstrap/css/bootstrap.css"/>
+	<link rel="stylesheet" href="admin/addons/toastr/toastr.min.css"/>
+	<link rel="stylesheet" href="admin/addons/fontawesome/css/font-awesome.css"/>
+	<link rel="stylesheet" href="admin/addons/ionicons/css/ionicons.css"/>
+	<link rel="stylesheet" href="admin/addons/noUiSlider/nouislider.min.css"/>
 
-	<link rel="stylesheet" href="styles/style.css"/>
-	<link rel="stylesheet" href="styles/theme-dark.css" class="theme"/>
+	<link rel="stylesheet" href="admin/styles/style.css"/>
+	<link rel="stylesheet" href="admin/styles/theme-dark.css" class="theme"/>
 	<!-- End of Styling -->
 
 	<!--Swwetalert-->
@@ -63,13 +63,13 @@
 	<div class="scripts">
 
 		<!-- Addons -->
-		<script src="addons/jquery/jquery.min.js"></script>
-		<script src="addons/jquery-ui/jquery-ui.min.js"></script>
-		<script src="addons/bootstrap/js/bootstrap.min.js"></script>
-		<script src="addons/toastr/toastr.min.js"></script>
+		<script src="admin/addons/jquery/jquery.min.js"></script>
+		<script src="admin/addons/jquery-ui/jquery-ui.min.js"></script>
+		<script src="admin/addons/bootstrap/js/bootstrap.min.js"></script>
+		<script src="admin/addons/toastr/toastr.min.js"></script>
 
 		<!-- scripts -->
-		<script src="addons/scripts.js"></script>
+		<script src="admin/addons/scripts.js"></script>
 		<!-- SwwetAlert -->
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 		<script>
@@ -100,7 +100,7 @@
 								}
 							case "1":
 								{
-									window.location.href = "./";
+									window.location.href = "admin/index.php";
 									break;
 								}
 						}

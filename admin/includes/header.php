@@ -10,7 +10,7 @@
         		</ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                    	<a href="logout.php">
+                    	<a href="../logout.php">
                         	Salir <i class="fa fa-sign-out"></i> 
                         </a>
                     </li>

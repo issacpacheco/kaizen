@@ -35,7 +35,7 @@ class mysqlconsultas {
     }   
     
     public function conexion(){
-        $connection = new \mysqli(HOST, USUARIO, PASSWORD, BD);
+        $connection = mysqli_connect(HOST, USUARIO, PASSWORD, BD);
         return $connection;
     }
     

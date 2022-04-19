@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['usuario']) && isset($_POST['pass']))
 {
-	$conexion = mysqli_connect("localhost","root","toor2017","kaizen");
+	$conexion = mysqli_connect("localhost","root","","leafseve_kaizen");
 	mysqli_query($conexion,"SET character_set_results = 'utf8', character_set_client = 'utf8', character_set_connection = 'utf8', character_set_database = 'utf8', character_set_server = 'utf8'");
 	$consulta = mysqli_query($conexion,"SELECT * FROM usuarios WHERE usuario = '".mysqli_real_escape_string($conexion,$_POST['usuario'])."' AND pass = '".mysqli_real_escape_string($conexion,$_POST['pass'])."' LIMIT 1");
 	if (mysqli_num_rows($consulta) == 0)

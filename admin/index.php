@@ -23,7 +23,7 @@ include("includes/config.php");
     <link rel="stylesheet" href="styles/<?php echo $theme;?>" class="theme" />	
     <!-- End of Styling -->
 </head>
-<body class="hold-transition">
+<body class="hold-transition" onload="nobackbutton();">
 
     <!-- Header -->
     <?php include("includes/header.php");?>
@@ -39,7 +39,7 @@ include("includes/config.php");
 
     <!-- Main content-->
     <div class="content">
-        <div class="container-fluid">
+        <div class="container-fluid" id="contenedor">
             <div class="row">
 				<div class="col-sm-12">
 					<div class="panel">
@@ -58,7 +58,22 @@ include("includes/config.php");
         <!-- End of Footer -->
     </div>
     <!-- End of Main content-->
-	
+	<div class="alertas cajaAlertaRoja">
+		<span class="fas fa-exclamation-triangle iconoalertas"></span>
+		<p>
+			Este es un mensaje de alerta para notificar a los usuarios que necesiten algo.
+		</p>
+	</div>
+	<div class="alertas cajaAlertaVerde">
+		<span class="fas fa-exclamation-triangle iconoalertas"></span>
+		<p>
+			Se ha guardado con exito
+		</p>
+	</div> 
+
+	<div id="portapopups" class="oscuro oculto">
+		<div id="popup" style="z-index:1000;"></div>
+	</div>
 	
     <div class="scripts">
         <!-- Addons -->
@@ -69,7 +84,10 @@ include("includes/config.php");
 		<script src="addons/pacejs/pace.min.js"></script>
         <!-- scripts -->
         <script src="addons/scripts.js"></script>
-		
+		<!-- Funciones -->
+		<script src="js/generales.js"></script>
+		<script src="js/loads.js"></script>
+		<script src="js/funciones.js"></script>
 		<!-- Current page scripts -->
         <div class="current-scripts">
 
