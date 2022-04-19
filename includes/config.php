@@ -1,6 +1,6 @@
 <?php
 error_reporting(0);
-$conexion = mysqli_connect("localhost","leafseve_kaizen_user","fabricandomarcas","leafseve_kaizen");
+$conexion = mysqli_connect("localhost","root","","leafseve_kaizen");
 mysqli_query($conexion,"SET character_set_results = 'utf8', character_set_client = 'utf8', character_set_connection = 'utf8', character_set_database = 'utf8', character_set_server = 'utf8'");
 date_default_timezone_set('America/Mexico_City');
 ini_set('memory_limit', '512M');
