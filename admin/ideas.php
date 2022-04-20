@@ -289,6 +289,7 @@ if (isset($_POST['ranking']))
 											else if ($_SESSION['nivel']==3)
 											{
 											?>
+											<th> Concursa </th>
 											<th> <i class="fa fa-check-circle"></i> </th>
 											<th> <i class="fa fa-pencil"></i> </th>
 											<th> <i class="fa fa-trash"></i> </th>
@@ -413,6 +414,8 @@ if (isset($_POST['ranking']))
 											}
 											else if ($_SESSION['nivel']==3)
 											{
+												$concursa = $d3['status'] == '1' ? 'SI' : 'NO';
+												echo '<td>'.$concursa.'</td>';
 												if ($d['mes']>=$mes_anterior && $d['mes']<= $mes_actual)
 												{
 													echo '

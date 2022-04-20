@@ -48,7 +48,8 @@ else if($_POST['opcion'] == 3)
     <link rel="stylesheet" href="addons/noUiSlider/nouislider.min.css"/>
 	
     <link rel="stylesheet" href="styles/style.css"/>
-	<link rel="stylesheet" href="styles/<?php echo $theme;?>" class="theme" />	
+	<link rel="stylesheet" href="styles/range.css"/>
+	<link rel="stylesheet" href="styles/<?php echo $theme;?>" class="theme" />
     <!-- End of Styling -->
 	
 	<!--Summernote-->
@@ -247,6 +248,19 @@ else if($_POST['opcion'] == 3)
 													<option value="2" <?php echo $selected2;?>>No</option>
 												</select>
 											</div>
+											<div class="col-md-6" id="">
+												<label>Colaborador de la idea</label>
+												<select name="id_colaborador" id="id_colaborador" class="form-control" onChange="CambioIdea()">
+													<option value="">Seleccionar</option>
+													<?php
+														$consulta_usu = mysqli_query($conexion,"SELECT * FROM usuarios where nivel = 3");
+														while ($usu = mysqli_fetch_array($consulta_usu))
+														{
+															echo $d['id_colaborador'] == $usu['id']?'<option value="'.$usu['id'].'" selected>'.$usu['nombre'].'</option>':'<option value="'.$usu['id'].'">'.$usu['nombre'].'</option>';
+														}
+													?>
+												</select>
+											</div>
 											<div class="col-md-6 hidden" id="contenedor_departamento">
 												<label>Nombre del departamento/estación que la creó</label>
 												<div class="input-group">
@@ -315,6 +329,43 @@ else if($_POST['opcion'] == 3)
 										<div class="row">
 											<div class="col-md-12">
 												<textarea class="form-control" rows="6" name="resultado" id="resultado"><?php echo $d['resultado'];?></textarea>
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<label class="col-md-12">Rango de inversion y beneficios</label>
+										</div>
+									</div> 
+									<div class="form-group container" style="margin-bottom: 5rem;">
+										<div class="row">
+											<div class="col-sm-6">
+												<div class="row">
+													<div class="col-sm-1">
+														<label for="" class="h4">$0.00</label>
+													</div>
+													<div class="col-sm-6">
+														<?php $valorinversion = $d['inversion']>0?$d['inversion']:'0'; ?>
+														<input type="range" min="0" max="5000" value="<?php echo $valorinversion; ?>" name="inversion_cant" step="1" class="range purple" id="inversion" oninput="inversionescant();" onchange="inversionescant();" >
+													</div>
+													<div class="col-sm-1">
+														<label for="" class="h4" id="inversion_cantidad">$<?php echo number_format($valorinversion,2,'.',','); ?></label>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="row">
+													<div class="col-sm-1">
+														<label for="" class="h4" >$0.00</label>
+													</div>
+													<div class="col-sm-6">
+													<?php $valorbeneficio = $d['beneficio']>0?$d['beneficio']:'0'; ?>
+														<input type="range" min="0" max="5000" value="<?php echo $valorbeneficio; ?>" name="beneficio_cant" step="1" class="range pink" id="beneficio" oninput="beneficiocant();" onchange="beneficiocant();" >
+													</div>
+													<div class="col-sm-1">
+														<label for="" class="h4" id="beneficio_cantidad">$<?php echo number_format($valorbeneficio,2,'.',','); ?></label>
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -744,6 +795,20 @@ else if($_POST['opcion'] == 3)
 							$('#id_usuario').html(data);
 						}
 					}) 
+				}
+				function inversionescant(){
+					var locale = 'es-MX';
+					var options = {style: 'currency', currency: 'MXN', minimumFractionDigits: 2, maximumFractionDigits: 2};
+					var formatter = new Intl.NumberFormat(locale, options);
+					var inver = document.getElementById('inversion').value;
+					$("#inversion_cantidad").html(formatter.format(inver));
+				}
+				function beneficiocant(){
+					var locale = 'es-MX';
+					var options = {style: 'currency', currency: 'MXN', minimumFractionDigits: 2, maximumFractionDigits: 2};
+					var formatter = new Intl.NumberFormat(locale, options);
+					var inver = document.getElementById('beneficio').value;
+					$("#beneficio_cantidad").html(formatter.format(inver));
 				}
 			</script>
 			

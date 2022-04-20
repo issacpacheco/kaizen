@@ -38,7 +38,11 @@ if ($opcion == 1)//ALTA
 	'".$fecha_implementacion."',
 	'".addslashes($problematica)."', 
 	'".addslashes($idea_propuesta)."', 
-	'".addslashes($resultado)."')"))
+	'".addslashes($resultado)."',
+	'".$id_colaborador."',
+	'".$inversion_cant."',
+	'".$beneficio_cant."',
+	'0')"))
 	{
 		$id = mysqli_insert_id($conexion);
 		
