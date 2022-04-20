@@ -113,6 +113,12 @@
                 <span>Ideas</span>
             </a>
         </li>
+        <li>
+            <a onclick="getPageMenu('pr-lista-productos')">
+                <i class="fa fa-lightbulb-o"></i>
+                <span>Canjear puntos</span>
+            </a>
+        </li>
     </ul>
 	<?php
 	}

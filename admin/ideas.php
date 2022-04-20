@@ -119,8 +119,10 @@ if (isset($_POST['ranking']))
     <link rel="stylesheet" href="addons/bootstrap/css/bootstrap.css"/>
     <link rel="stylesheet" href="addons/toastr/toastr.min.css"/>
     <link rel="stylesheet" href="addons/fontawesome/css/font-awesome.css"/>
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.0/css/all.css">
     <link rel="stylesheet" href="addons/ionicons/css/ionicons.css"/>
     <link rel="stylesheet" href="addons/noUiSlider/nouislider.min.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.0/sweetalert2.css"/>
 
     <link rel="stylesheet" href="styles/style.css"/>
 	<link rel="stylesheet" href="styles/<?php echo $theme;?>" class="theme" />	
@@ -146,7 +148,7 @@ if (isset($_POST['ranking']))
 
     <!-- Main content-->
      <div class="content">
-		 <div class="container-fluid">
+		 <div class="container-fluid" id="contenedor">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="panel">
@@ -510,6 +512,12 @@ if (isset($_POST['ranking']))
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
 		<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.0/sweetalert2.js"></script>
+		<!-- Funciones -->
+		<script src="js/generales.js"></script>
+		<script src="js/loads.js"></script>
+		<script src="js/funciones.js"></script>
         <!-- scripts -->
         <script src="addons/scripts.js"></script>
 		

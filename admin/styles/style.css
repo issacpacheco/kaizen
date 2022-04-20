@@ -136,6 +136,17 @@ body {
   /*z-index: 7;*/
 }
 
+.NumCar{
+  background-color: red;
+  border-radius: 15px;
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  top: -15px;
+  left: 70px;
+  font-size: 20px;
+}
+
 .alerta {
   background: #FFFFA5 !important;
 }

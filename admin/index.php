@@ -19,6 +19,7 @@ include("includes/config.php");
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.0/css/all.css">
     <link rel="stylesheet" href="addons/ionicons/css/ionicons.css"/>
     <link rel="stylesheet" href="addons/noUiSlider/nouislider.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.0/sweetalert2.css"/>
 
     <link rel="stylesheet" href="styles/style.css"/>
     <link rel="stylesheet" href="styles/<?php echo $theme;?>" class="theme" />	
@@ -145,6 +146,8 @@ include("includes/config.php");
         <script src="addons/bootstrap/js/bootstrap.min.js"></script>
 		<script src="addons/fullcalendar/lib/moment.min.js"></script>
 		<script src="addons/pacejs/pace.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.0/sweetalert2.js"></script>
         <!-- scripts -->
         <script src="addons/scripts.js"></script>
 		<!-- Funciones -->

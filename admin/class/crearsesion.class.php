@@ -5,24 +5,24 @@ use conexionbd\mysqlconsultas;
 
 class newsesion extends mysqlconsultas{
 
-    public function crearsesion($id, $id_campus, $id_area, $nombre, $nivel){
+    // public function crearsesion($id, $id_campus, $id_area, $nombre, $nivel){
 
-        if (session_status() == PHP_SESSION_NONE) {
-            ini_set("session.cookie_lifetime","86400");
-            ini_set("session.gc_maxlifetime","86400");  
-            session_start();            
-            session_regenerate_id();
-            session_write_close();
-        }
-        // session_start();
+    //     if (session_status() == PHP_SESSION_NONE) {
+    //         ini_set("session.cookie_lifetime","86400");
+    //         ini_set("session.gc_maxlifetime","86400");  
+    //         session_start();            
+    //         session_regenerate_id();
+    //         session_write_close();
+    //     }
+    //     // session_start();
 
-    }
+    // }
 
-    public function login($usuario, $password){
-        $qry = "SELECT * FROM usuarios WHERE correo = '".$usuario."' AND pass = '".$password."' LIMIT 1";
-        $res = $this->consulta($qry);
-        return $res;
-    }
+    // public function login($usuario, $password){
+    //     $qry = "SELECT * FROM usuarios WHERE correo = '".$usuario."' AND pass = '".$password."' LIMIT 1";
+    //     $res = $this->consulta($qry);
+    //     return $res;
+    // }
 
     public function leerDatos() {
         // session_start();

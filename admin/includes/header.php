@@ -1,3 +1,4 @@
+<?php include('ajax-save/carrito.php'); ?>
 <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div id="navbar" class="navbar-collapse">
