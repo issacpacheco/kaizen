@@ -25,7 +25,7 @@ include("includes/config.php");
     <link rel="stylesheet" href="styles/<?php echo $theme;?>" class="theme" />	
     <!-- End of Styling -->
 </head>
-<body class="hold-transition" onload="nobackbutton();">
+<body class="hold-transition">
 
     <!-- Header -->
     <?php include("includes/header.php");?>

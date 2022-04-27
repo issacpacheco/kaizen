@@ -114,7 +114,13 @@
             </a>
         </li>
         <li>
-            <a onclick="getPageMenu('pr-lista-productos')">
+            <a href="pr-productos.php">
+                <i class="fa fa-lightbulb-o"></i>
+                <span>Canjear puntos</span>
+            </a>
+        </li>
+        <li>
+            <a href="pr-ranking.php">
                 <i class="fa fa-lightbulb-o"></i>
                 <span>Canjear puntos</span>
             </a>

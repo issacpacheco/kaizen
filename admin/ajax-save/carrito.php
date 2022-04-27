@@ -1,6 +1,6 @@
 <?php
 // session_start();
-error_log(0);
+error_log(E_ALL);
 $mensaje="";
 
 if(isset($_POST['btnAccion'])){
@@ -10,12 +10,14 @@ if(isset($_POST['btnAccion'])){
             $nombre     = $_POST['nombre'];
             $descrip    = $_POST['descripcion'];
             $costo      = $_POST['costo'];
+            $cantidad   = $_POST['cantidad'];
             if(!isset($_SESSION['carrito'])){
                 $listaProductos = array(
-                    'id' => $id,
-                    'nombre_producto' => $nombre,
-                    'descripcion' => $descrip,
-                    'costo' => $costo
+                    'id'                => $id,
+                    'nombre_producto'   => $nombre,
+                    'descripcion'       => $descrip,
+                    'costo'             => $costo,
+                    'cantidad'          => $cantidad
                 );
                 $_SESSION['carrito'][0] = $listaProductos;
                 echo '<script type="text/javascript">';
@@ -39,10 +41,11 @@ if(isset($_POST['btnAccion'])){
                 }else{
                     $NumeroProd=count($_SESSION['carrito']);
                     $listaProductos = array(
-                        'id' => $id,
-                        'nombre_producto' => $nombre,
-                        'descripcion' => $descrip,
-                        'costo' => $costo
+                        'id'                => $id,
+                        'nombre_producto'   => $nombre,
+                        'descripcion'       => $descrip,
+                        'costo'             => $costo,
+                        'cantidad'          => $cantidad
                     );
                     $_SESSION['carrito'][$NumeroProd] = $listaProductos;
                     echo '<script type="text/javascript">';

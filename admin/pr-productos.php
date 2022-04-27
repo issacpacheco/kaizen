@@ -2,7 +2,7 @@
 include("includes/config.php");
 
 include('class/allClass.php'); 
-include('ajax-save/carrito.php');
+
 use nsproductos\productos;
 use nsfunciones\funciones;
 
@@ -31,12 +31,13 @@ $cproductos   = $fn    -> cuentarray($productos);
     <link rel="stylesheet" href="addons/ionicons/css/ionicons.css"/>
     <link rel="stylesheet" href="addons/noUiSlider/nouislider.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.0/sweetalert2.css"/>
-
+    <!-- DataTables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.css"/>
     <link rel="stylesheet" href="styles/style.css"/>
     <link rel="stylesheet" href="styles/<?php echo $theme;?>" class="theme" />	
     <!-- End of Styling -->
 </head>
-<body class="hold-transition" onload="nobackbutton();">
+<body class="hold-transition">
 
     <!-- Header -->
     <?php include("includes/header.php");?>
@@ -58,9 +59,6 @@ $cproductos   = $fn    -> cuentarray($productos);
                     <div class="row panel-body">
                         <div class="col-sm-6 h1">
                             Canjeo
-                            <a href="#">
-                                <?php if(!empty($_SESSION['carrito'])){ ?><button class="btn btn-warning white carrito" data-bs-toggle="" data-bs-target="#exampleModal" onclick="showcarrito()">Carrito<span class="fas fa-shopping-cart"></span><span class="NumCar"><?php echo (empty($_SESSION['carrito']))?0:count($_SESSION['carrito']); ?></span></button><?php }else{ } ?>
-                            </a>
                         </div>
                     </div>
                     <div class="row panel-body">
@@ -69,36 +67,28 @@ $cproductos   = $fn    -> cuentarray($productos);
                         </div>
                     </div>
                     <div class="panel-body">
-                        <form action="" method="POST">
-                            <table class="table table-striped table-bordered table-hover" id="tabla">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Nombre</th>
-                                        <th>Descripcion</th>
-                                        <th>Costo</th>
-                                        <th>Cantidad a canjear</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php for($i = 0; $i < $cproductos; $i++){ ?>
+                        <div class="row" style="align-content:center;">
+                            <?php for($i = 0; $i < $cproductos; $i++){ ?>
+                            
+                            <div class="col-sm-3 text-center">
+                                <div class="card" style="background-color: #211F20;">
+                                    <form action="#" method="POST">
                                         <input type="hidden" name="id_producto" value="<?php echo $productos['id'][$i]; ?>">
                                         <input type="hidden" name="nombre" value="<?php echo $productos['nombre'][$i]; ?>">
                                         <input type="hidden" name="descripcion" value="<?php echo $productos['descripcion'][$i]; ?>">
                                         <input type="hidden" name="costo" value="<?php echo $productos['costo'][$i]; ?>">
-                                    <tr>
-                                        <td style="width:30%;"><img src="images/productos/<?php echo $productos['foto'][$i]; ?>" alt="" style="width:25%;"></td>
-                                        <td><?php echo $productos['nombre'][$i]; ?></td>
-                                        <td><?php echo $productos['descripcion'][$i]; ?></td>
-                                        <td><?php echo $productos['costo'][$i]; ?></td>
-                                        <td><input type="number" name="cantidad" id="cantidad_canjear" value=""></td>
-                                        <td><button class="btn btn-primary btnservices fw-light white fw-bold" value="Agregar" name="btnAccion">Agregar</button></td>
-                                    </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
-                        </form>
+                                        <img class="card-img-top" src="images/productos/<?php echo $productos['foto'][$i]; ?>" alt="" style="width:100%;">
+                                        <div class="card-body">
+                                            <h2 class="card-title text-muted"><?php echo $productos['nombre'][$i]; ?></h2>
+                                            <p class="card-text text-muted">Costo: <?php echo $productos['costo'][$i]; ?> Puntos</p>
+                                            <input type="number" class="form-control center-block" name="cantidad" id="cantidad" min="0" max="100" style="width: 50%;margin-bottom:2rem">
+                                            <button class="btn btn-primary btnservices fw-light white fw-bold" value="Agregar" name="btnAccion" style="margin-bottom: 1rem;">Agregar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <?php } ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -140,13 +130,29 @@ $cproductos   = $fn    -> cuentarray($productos);
 		<script src="js/generales.js"></script>
 		<script src="js/loads.js"></script>
 		<script src="js/funciones.js"></script>
+        <!-- DataTables -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.16/af-2.2.2/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/cr-1.4.1/fc-3.2.4/fh-3.1.3/kt-2.3.2/r-2.2.1/rg-1.0.2/rr-1.2.3/sc-1.4.4/sl-1.2.5/datatables.min.js"></script>
 		<!-- Current page scripts -->
         <div class="current-scripts">
-
-           
-            
+            <script>
+				$(document).ready(function(){	
+					$('#tabla').DataTable( {
+					   "language": { url:"//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"},
+						"ordering": true,
+						"paging": true,
+						"searching": true,
+						"info": true,
+						"fixedHeader": true,
+						"autoFill": false,
+						"colReorder": false,
+						"fixedColumns": false,
+						"responsive": true,
+					} );
+				});	
+			</script>
         </div>
-
     </div>
 
 </body>

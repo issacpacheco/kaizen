@@ -10,6 +10,13 @@
 					</li>
         		</ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <li class="">
+                    <?php if(!empty($_SESSION['carrito'])){ ?>
+                        <a href="#" class="bg-warning" style="border-radius: 40px;width: 55px;height: 55px;margin-top: 2px;">
+                            <span class="fas fa-shopping-cart" style="margin-left: 12px;"></span><span class="" style="font-size:15px;position:absolute;"> <?php echo (empty($_SESSION['carrito']))?0:count($_SESSION['carrito']); ?></span>
+                        </a>
+                    <?php }else{ } ?>
+                    </li>
                     <li>
                     	<a href="../logout.php">
                         	Salir <i class="fa fa-sign-out"></i> 
