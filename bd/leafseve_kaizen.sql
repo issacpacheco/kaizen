@@ -11,7 +11,7 @@
  Target Server Version : 100422
  File Encoding         : 65001
 
- Date: 29/04/2022 16:28:24
+ Date: 02/05/2022 13:29:15
 */
 
 SET NAMES utf8mb4;
@@ -88,13 +88,14 @@ CREATE TABLE `equipos`  (
   `nombre` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `promotor` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `tipo` int(10) NOT NULL,
+  `puntos` int(255) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of equipos
 -- ----------------------------
-INSERT INTO `equipos` VALUES (1, 'Aguilas', 'Christhian Sosa', 2);
+INSERT INTO `equipos` VALUES (1, 'Aguilas', 'Christhian Sosa', 2, NULL);
 
 -- ----------------------------
 -- Table structure for evaluacion
@@ -104,7 +105,7 @@ CREATE TABLE `evaluacion`  (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `id_idea` int(10) NOT NULL,
   `id_usuario` int(10) NOT NULL,
-  `id_clasificacion` int(10) NOT NULL,
+  `id_clasificacion` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `retroalimentacion` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `status` int(10) NOT NULL,
   `fecha` date NOT NULL,
@@ -114,11 +115,11 @@ CREATE TABLE `evaluacion`  (
 -- ----------------------------
 -- Records of evaluacion
 -- ----------------------------
-INSERT INTO `evaluacion` VALUES (1, 1, 2, 1, '', 1, '2022-01-14');
-INSERT INTO `evaluacion` VALUES (2, 2, 2, 1, '', 1, '2022-01-15');
-INSERT INTO `evaluacion` VALUES (3, 3, 2, 1, '', 1, '2022-01-15');
-INSERT INTO `evaluacion` VALUES (4, 4, 2, 1, '', 1, '2022-01-18');
-INSERT INTO `evaluacion` VALUES (5, 5, 2, 2, 'hola mundo', 0, '2022-04-20');
+INSERT INTO `evaluacion` VALUES (1, 1, 2, '2,3,4,5', '', 1, '2022-05-02');
+INSERT INTO `evaluacion` VALUES (2, 2, 2, '1', '', 1, '2022-01-15');
+INSERT INTO `evaluacion` VALUES (3, 3, 2, '1', '', 1, '2022-01-15');
+INSERT INTO `evaluacion` VALUES (4, 4, 2, '4', '', 1, '2022-05-02');
+INSERT INTO `evaluacion` VALUES (5, 5, 2, '1,2,3,5', 'hola mundo', 0, '2022-05-02');
 
 -- ----------------------------
 -- Table structure for evaluacion_criterios
@@ -135,12 +136,12 @@ CREATE TABLE `evaluacion_criterios`  (
 -- ----------------------------
 -- Records of evaluacion_criterios
 -- ----------------------------
-INSERT INTO `evaluacion_criterios` VALUES (1, 1, 1, 'Sí');
-INSERT INTO `evaluacion_criterios` VALUES (2, 1, 2, 'Sí');
-INSERT INTO `evaluacion_criterios` VALUES (3, 1, 3, 'Sí');
-INSERT INTO `evaluacion_criterios` VALUES (4, 1, 4, 'Sí');
-INSERT INTO `evaluacion_criterios` VALUES (5, 1, 5, 'Sí');
-INSERT INTO `evaluacion_criterios` VALUES (6, 1, 6, 'Sí');
+INSERT INTO `evaluacion_criterios` VALUES (1, 1, 1, 'No');
+INSERT INTO `evaluacion_criterios` VALUES (2, 1, 2, 'No');
+INSERT INTO `evaluacion_criterios` VALUES (3, 1, 3, 'No');
+INSERT INTO `evaluacion_criterios` VALUES (4, 1, 4, 'No');
+INSERT INTO `evaluacion_criterios` VALUES (5, 1, 5, 'No');
+INSERT INTO `evaluacion_criterios` VALUES (6, 1, 6, 'No');
 INSERT INTO `evaluacion_criterios` VALUES (7, 1, 7, '');
 INSERT INTO `evaluacion_criterios` VALUES (8, 1, 8, '');
 INSERT INTO `evaluacion_criterios` VALUES (9, 2, 1, 'Sí');
@@ -218,7 +219,7 @@ CREATE TABLE `nivel_usuarios`  (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of nivel_usuarios
@@ -226,6 +227,7 @@ CREATE TABLE `nivel_usuarios`  (
 INSERT INTO `nivel_usuarios` VALUES (1, 'Administrador');
 INSERT INTO `nivel_usuarios` VALUES (2, 'Promotor');
 INSERT INTO `nivel_usuarios` VALUES (3, 'Generador');
+INSERT INTO `nivel_usuarios` VALUES (4, 'Gerente');
 
 -- ----------------------------
 -- Table structure for productos
@@ -281,7 +283,7 @@ CREATE TABLE `usuarios`  (
   `nombre` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `nivel` int(10) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of usuarios
@@ -289,5 +291,6 @@ CREATE TABLE `usuarios`  (
 INSERT INTO `usuarios` VALUES (1, 0, 'administrador', '12345', 'Velia', 1);
 INSERT INTO `usuarios` VALUES (2, 1, 'promotor1', '1', '', 2);
 INSERT INTO `usuarios` VALUES (3, 1, 'user1', '1', 'pruebas de usuario', 3);
+INSERT INTO `usuarios` VALUES (4, 0, 'gerente', '123', 'Gerente', 4);
 
 SET FOREIGN_KEY_CHECKS = 1;
