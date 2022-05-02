@@ -7,9 +7,15 @@ if ($_POST['evaluacion']==1)
 	$consulta = mysqli_query($conexion,"SELECT * FROM evaluacion WHERE id_idea = '".$_POST['id_idea']."'");
 	if (mysqli_num_rows($consulta)>0)
 	{
+		$contador = count($id_clasificacion);
+		$id_clasificacion = "";
+		for($i = 0; $i < $contador; $i++){
+			$ids_clasificaciones .= $_REQUEST['id_clasificacion'][$i].",";
+		}
+		$ids_clasificaciones = trim($ids_clasificaciones, ',');
 		//UPDATE
 		mysqli_query($conexion,"UPDATE evaluacion SET 
-		id_clasificacion  = '".$id_clasificacion."',
+		id_clasificacion  = '".$ids_clasificaciones."',
 		retroalimentacion = '".addslashes($retroalimentacion)."',
 		status = '".$status."',
 		fecha = '".$hoy."'
@@ -28,13 +34,20 @@ if ($_POST['evaluacion']==1)
 	}
 	else
 	{
+		$contador = count($id_clasificacion);
+		$id_clasificacion = "";
+		for($i = 0; $i < $contador; $i++){
+			$ids_clasificaciones .= $_REQUEST['id_clasificacion'][$i].",";
+		}
+		
+		$ids_clasificaciones = trim($ids_clasificaciones, ',');
 		//INSERT INTO
 		mysqli_query($conexion,"ALTER TABLE evaluacion AUTO_INCREMENT = 0");
 		mysqli_query($conexion,"INSERT INTO evaluacion VALUES (
 		'0',
 		'".$id_idea."',
 		'".$_SESSION['id_admin']."', 
-		'".$id_clasificacion."', 
+		'".$ids_clasificaciones."', 
 		'".addslashes($retroalimentacion)."', 
 		'".$status."',
 		'".$hoy."'
@@ -157,7 +170,7 @@ if (isset($_POST['ranking']))
                         </div>
                         <div class="panel-body">
 							<?php
-							if ($_SESSION['nivel']==1 || $_SESSION['nivel']==3)
+							if ($_SESSION['nivel']==1 || $_SESSION['nivel']==3 || $_SESSION['nivel'] == 4)
 							{	
 							?>
 							<div class="row">
@@ -171,7 +184,7 @@ if (isset($_POST['ranking']))
 							<br>
 							<?php
 							}
-							if ($_SESSION['nivel']==1 || $_SESSION['nivel']==2)
+							if ($_SESSION['nivel']==1 || $_SESSION['nivel']==2 || $_SESSION['nivel'] == 4)
 							{
 							?>
 							<form action="ideas.php" method="post">
@@ -226,7 +239,7 @@ if (isset($_POST['ranking']))
 											<select class="form-control" name="id_equipo">
 											<?php
 											$consulta_cat = mysqli_query($conexion,"SELECT * FROM equipos");
-											if ($_SESSION['nivel']==1)
+											if ($_SESSION['nivel']==1 || $_SESSION['nivel'] == 4)
 											{
 												echo '<option value="">Todos</option>';
 											}
@@ -272,7 +285,7 @@ if (isset($_POST['ranking']))
 											<th> Año </th>
 											<th> Estatus </th>
 											<?php
-											if ($_SESSION['nivel']==1)
+											if ($_SESSION['nivel']==1 || $_SESSION['nivel'] == 4)
 											{	
 											?>
 											<th> Fecha de evaluación</th>
@@ -286,6 +299,7 @@ if (isset($_POST['ranking']))
 											{
 											?>
 											<th> <i class="fa fa-check"></i> </th>
+											<th> <i class="fa fa-check"></i> Concursa</th>
 											<?php
 											}
 											else if ($_SESSION['nivel']==3)
@@ -308,7 +322,7 @@ if (isset($_POST['ranking']))
 										
 										$query_equipo = $_POST['id_equipo']!=''?' id_equipo = "'.$_POST['id_equipo'].'"':' 1 ';
 										
-										if ($_SESSION['nivel']==1)
+										if ($_SESSION['nivel']==1 || $_SESSION['nivel'] == 4)
 										{
 											$consulta = mysqli_query($conexion,"SELECT * FROM ideas WHERE $query_mes AND $query_anio AND $query_equipo");
 										}
@@ -355,7 +369,7 @@ if (isset($_POST['ranking']))
 												$fecha_evaluacion = Fecha($d3['fecha']);
 											}
 											
-											if ($_SESSION['nivel']==1)
+											if ($_SESSION['nivel']==1 || $_SESSION['nivel'] == 4)
 											{
 												if ($class != 'success')
 												{
@@ -413,6 +427,9 @@ if (isset($_POST['ranking']))
 														<button type="submit" class="btn btn-md btn-info btn-block"><i class="fa fa-check"></i> Evaluar</button>
 													</form>
 												</td>';
+												echo '<td>
+														<input type="checkbox" value=""  onchange="handleChange(this);"> Validar participación
+												</td>';
 											}
 											else if ($_SESSION['nivel']==3)
 											{
@@ -467,6 +484,36 @@ if (isset($_POST['ranking']))
 													</td>
 													<td></td><td></td>';
 												}
+											}else if ($_SESSION['nivel'] == 4 )
+											{
+												echo '
+												<td>'.$fecha_evaluacion.'</td>
+												<td>
+													<form action="evaluacion.php" method="post">
+														<input type="hidden" name="id" value="'.$d['id'].'">
+														<button type="submit" class="btn btn-md btn-info btn-block"><i class="fa fa-search"></i> Ver</button>
+													</form>
+												</td>
+												<td>
+													<form action="ranking.php" method="post">
+														<input type="hidden" name="id" value="'.$d['id'].'">
+														<button type="submit" class="btn btn-md btn-warning btn-block" disabled><i class="fa fa-star"></i> Ranking '.$ranking.'</button>
+													</form>
+												</td>
+												<td>
+													<form action="ideas_abc.php" method="post">
+														<input type="hidden" name="opcion" value="2">
+														<input type="hidden" name="id" value="'.$d['id'].'">
+														<button type="submit" class="btn btn-md btn-success btn-block" disabled><i class="fa fa-pencil"></i> Editar</button>
+													</form>
+												</td>
+												<td> 
+													<form action="ideas_abc.php" method="post">
+														<input type="hidden" name="opcion" value="3">
+														<input type="hidden" name="id" value="'.$d['id'].'">
+														<button type="submit" class="btn btn-md btn-danger btn-block" disabled><i class="fa fa-trash"></i> Eliminar</button>
+													</form>
+												</td>';
 											}
 											echo '</tr>';
 										}
@@ -555,6 +602,14 @@ if (isset($_POST['ranking']))
 							$('#Modal').modal('toggle');
 						}
 					} )	
+				}
+
+				function handleChange(checkbox) {
+					if(checkbox.checked == true){
+						console.log("Se da check");
+					}else{
+						console.log("Se quita el check");
+					}
 				}
 			</script>            
         </div>

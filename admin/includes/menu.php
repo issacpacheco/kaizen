@@ -122,12 +122,32 @@
         <li>
             <a href="pr-ranking.php">
                 <i class="fa fa-lightbulb-o"></i>
-                <span>Canjear puntos</span>
+                <span>Ranking</span>
             </a>
         </li>
     </ul>
 	<?php
 	}
+    //Gerente
+	if ($_SESSION['nivel']==4)
+	{
+	?>
+    <ul class="nav primary">
+        <li>
+            <a href="pr-ranking.php">
+                <i class="fa fa-lightbulb-o"></i>
+                <span>Ranking</span>
+            </a>
+        </li>
+        <li>
+            <a href="ideas.php">
+                <i class="fa fa-lightbulb-o"></i>
+                <span>Ideas</span>
+            </a>
+        </li>
+    </ul>
+	<?php
+    }
 	?>
     <div class="time text-center">
         <h5 class="current-time2">&nbsp;</h5>

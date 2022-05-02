@@ -155,22 +155,27 @@ function LeerArchivos($path)
 									<div class="row">
 										<div class="col-md-6">
 											<label>Clasificación</label>
-											<select name="id_clasificacion" id="id_clasificacion" class="form-control">
+											<div class="row">
 												<?php
+												
+												// $dias = array('Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo');
+												// $dias_seleccionados = explode(', ', $info['disponibilidad'][0]);
+												// $contar_variable = count($dias_seleccionados);
+
+												// if(in_array('Martes',$dias_seleccionados)){
+												// 	echo "checked";
+												//  }
+
 												$consulta_cat = mysqli_query($conexion,"SELECT * FROM clasificacion");
 												while($cat = mysqli_fetch_array($consulta_cat))
 												{
-													if ($d1['id_clasificacion']==$cat['id'])
-													{
-														echo '<option value="'.$cat['id'].'" selected>'.$cat['nombre'].'</option>';
-													}
-													else
-													{
-														echo '<option value="'.$cat['id'].'">'.$cat['nombre'].'</option>';
-													}
-												}
-												?>
-											</select>
+													$clasificaciones 				= array($cat['id']); 
+													$clasificaciones_seleccionados 	= explode(',', $d1['id_clasificacion']);?>
+												<div class="col-sm-3">
+													<input type="checkbox" name="id_clasificacion[]" value="<?php echo $cat['id'] ?>" <?php if(in_array($cat['id'],$clasificaciones_seleccionados)){ echo "checked"; } ?> > <?php echo $cat['nombre']; ?>
+												</div>
+												<?php } ?>
+											</div>
 										</div>
 										<div class="col-md-6">
 											<label>Estado de la idea</label>
@@ -215,14 +220,18 @@ function LeerArchivos($path)
 									?>
 									<div class="row">
 										<div class="col-md-2">
-											<select name="respuesta_<?php echo $d2['id'];?>" class="form-control">
-												<?php
-													$selected1 = $d3['respuesta']=='Sí'?'selected':'';
-													$selected2 = $d3['respuesta']=='No'?'selected':'';
-													?>
-													<option value="Sí" <?php echo $selected1;?>>Sí</option>
-													<option value="No" <?php echo $selected2;?>>No</option>
-											</select>
+											<?php
+												$selected1 = $d3['respuesta']=='Sí'?'checked':'';
+												$selected2 = $d3['respuesta']=='No'?'checked':'';
+											?>
+											<fieldset>
+												<label>
+													<input type="radio" name="respuesta_<?php echo $d2['id'];?>" value="Sí" <?php echo $selected1;?>> SI
+												</label>
+												<label>
+													<input type="radio" name="respuesta_<?php echo $d2['id'];?>" value="No" <?php echo $selected2;?>> NO
+												</label>
+											</fieldset>
 										</div>
 									</div>
 									<?php
@@ -244,7 +253,7 @@ function LeerArchivos($path)
 								</div>
 								
 								<?php
-								if ($_SESSION['nivel']==1)
+								if ($_SESSION['nivel']==1 || $_SESSION['nivel']==4)
 								{
 								?>
 								<div class="row" style="margin-top: 10px">
@@ -258,10 +267,15 @@ function LeerArchivos($path)
 								{
 								?>
 								<div class="row" style="margin-top: 10px">
-									<div class="col-sm-8">
+									<div class="col-sm-4">
 										<input type="hidden" name="evaluacion" value="1">
 										<input type="hidden" name="id_idea" value="<?php echo $_POST['id'];?>">
 										<button type="submit" class="btn btn-success btn-lg btn-block" id="boton">Guardar <i class="fa fa-save"></i></button>
+									</div>
+									<div class="col-sm-4">
+										<input type="hidden" name="evaluacion" value="1">
+										<input type="hidden" name="id_idea" value="<?php echo $_POST['id'];?>">
+										<button type="submit" class="btn btn-warning btn-lg btn-block" id="boton">Enviar al gerente <i class="fa fa-send"></i></button>
 									</div>
 									<div class="col-sm-4">
 										<a href="ideas.php" class="btn btn-info btn-lg btn-block">Cancelar <i class="fa fa-close"></i></a>

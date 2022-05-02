@@ -1,6 +1,12 @@
 <?php
 error_reporting(0);
-$conexion = mysqli_connect("localhost","root","","leafseve_kaizen");
+//Conexión local
+$bd 	= "leafseve_kaizen";
+$pass 	= "";
+//Conexion en servidor
+// $bd 	= "kaizen2";
+// $pass 	= "toor2017";
+$conexion = mysqli_connect("localhost","root","$pass","$bd");
 mysqli_query($conexion,"SET character_set_results = 'utf8', character_set_client = 'utf8', character_set_connection = 'utf8', character_set_database = 'utf8', character_set_server = 'utf8'");
 date_default_timezone_set('America/Mexico_City');
 ini_set('memory_limit', '512M');
