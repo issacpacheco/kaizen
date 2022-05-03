@@ -11,7 +11,7 @@
  Target Server Version : 100422
  File Encoding         : 65001
 
- Date: 02/05/2022 13:29:15
+ Date: 03/05/2022 16:11:55
 */
 
 SET NAMES utf8mb4;
@@ -219,7 +219,7 @@ CREATE TABLE `nivel_usuarios`  (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 6 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of nivel_usuarios
@@ -228,6 +228,7 @@ INSERT INTO `nivel_usuarios` VALUES (1, 'Administrador');
 INSERT INTO `nivel_usuarios` VALUES (2, 'Promotor');
 INSERT INTO `nivel_usuarios` VALUES (3, 'Generador');
 INSERT INTO `nivel_usuarios` VALUES (4, 'Gerente');
+INSERT INTO `nivel_usuarios` VALUES (5, 'Comite');
 
 -- ----------------------------
 -- Table structure for productos
@@ -283,7 +284,7 @@ CREATE TABLE `usuarios`  (
   `nombre` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `nivel` int(10) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 6 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of usuarios
@@ -292,5 +293,6 @@ INSERT INTO `usuarios` VALUES (1, 0, 'administrador', '12345', 'Velia', 1);
 INSERT INTO `usuarios` VALUES (2, 1, 'promotor1', '1', '', 2);
 INSERT INTO `usuarios` VALUES (3, 1, 'user1', '1', 'pruebas de usuario', 3);
 INSERT INTO `usuarios` VALUES (4, 0, 'gerente', '123', 'Gerente', 4);
+INSERT INTO `usuarios` VALUES (5, 0, 'comite', '123', 'Comite', 5);
 
 SET FOREIGN_KEY_CHECKS = 1;
