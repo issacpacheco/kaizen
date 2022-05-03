@@ -65,6 +65,7 @@ $cproductos   = $fn    -> cuentarray($productos);
                     <div class="row panel-body">
                         <div class="col-sm-12 h3">
                             <div class="panel-body row">
+                                <?php if($_SESSION['nivel'] == 3 || $_SESSION['nivel'] == 4){ ?>
                                 <div class="form-wrapper col-sm-4">
                                     <label for="">Trismestre</label>
                                     <div class="form-group">
@@ -83,13 +84,20 @@ $cproductos   = $fn    -> cuentarray($productos);
                                         </select>
                                     </div>
                                 </div>
+                                <?php } ?>
                                 <div class="col-sm-4">
                                     <label for="">Tipo</label>
                                     <div class="form-group">
                                         <select name="trismestre" id="trismestre" class="form-control">
                                             <option value="0">Seleccione un tipo</option>
+                                            <?php if($_SESSION['nivel'] == 3 || $_SESSION['nivel'] == 4){ ?>
                                             <option value="1">Equipo</option>
                                             <option value="2">Generador</option>
+                                            <?php } ?>
+                                            <?php if($_SESSION['nivel'] == 5){ ?>
+                                            <option value="1">Administrativas</option>
+                                            <option value="2">Estaciones</option>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -98,6 +106,7 @@ $cproductos   = $fn    -> cuentarray($productos);
                     </div>
                     <div class="panel-body">
                         <form action="" method="POST">
+                            <?php if($_SESSION['nivel'] == 3 || $_SESSION['nivel'] == 4){ ?>
                             <table class="table table-striped table-bordered table-hover" id="tabla">
                                 <thead>
                                     <tr>
@@ -116,6 +125,29 @@ $cproductos   = $fn    -> cuentarray($productos);
                                     <?php } ?>
                                 </tbody>
                             </table>
+                            <?php } ?>
+                            <?php if($_SESSION['nivel'] == 5){ ?>
+                            <table class="table table-striped table-bordered table-hover" id="tabla">
+                                <thead>
+                                    <tr>
+                                        <th>Ranking</th>
+                                        <th>Puntos</th>
+                                        <th>Equipo</th>
+                                        <th>Nombre de la idea</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php for($i = 0; $i < $cproductos; $i++){ ?>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                            <?php } ?>
                         </form>
                     </div>
                 </div>

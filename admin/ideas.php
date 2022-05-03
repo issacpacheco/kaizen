@@ -170,7 +170,7 @@ if (isset($_POST['ranking']))
                         </div>
                         <div class="panel-body">
 							<?php
-							if ($_SESSION['nivel']==1 || $_SESSION['nivel']==3 || $_SESSION['nivel'] == 4)
+							if ($_SESSION['nivel']==1 || $_SESSION['nivel']==3 || $_SESSION['nivel'] == 4 || $_SESSION['nivel'] == 5)
 							{	
 							?>
 							<div class="row">
@@ -311,6 +311,14 @@ if (isset($_POST['ranking']))
 											<th> <i class="fa fa-trash"></i> </th>
 											<?php
 											}
+											else if($_SESSION['nivel'] == 5)
+											{
+											?>
+											<th> Fecha de evaluación</th>
+											<th> <i class="fa fa-search"></i> </th>
+											<th> <i class="fa fa-star"></i> </th>
+											<?php
+											}
 											?>
                                         </tr>
                                     </thead>
@@ -334,7 +342,10 @@ if (isset($_POST['ranking']))
 										{
 											$consulta = mysqli_query($conexion,"SELECT * FROM ideas WHERE id_equipo = '".$_SESSION['id_equipo']."' AND id_usuario = '".$_SESSION['id_usuario']."'");
 										}
-										
+										else if($_SESSION['nivel'] == 5)
+										{
+											$consulta = mysqli_query($conexion,"SELECT * FROM ideas WHERE $query_mes AND $query_anio AND $query_equipo");
+										}
 										while ($d = mysqli_fetch_array($consulta))
 										{
 											$consulta1 = mysqli_query($conexion,"SELECT * FROM usuarios WHERE id = '".$d['id_usuario']."' LIMIT 1");
@@ -485,6 +496,36 @@ if (isset($_POST['ranking']))
 													<td></td><td></td>';
 												}
 											}else if ($_SESSION['nivel'] == 4 )
+											{
+												echo '
+												<td>'.$fecha_evaluacion.'</td>
+												<td>
+													<form action="evaluacion.php" method="post">
+														<input type="hidden" name="id" value="'.$d['id'].'">
+														<button type="submit" class="btn btn-md btn-info btn-block"><i class="fa fa-search"></i> Ver</button>
+													</form>
+												</td>
+												<td>
+													<form action="ranking.php" method="post">
+														<input type="hidden" name="id" value="'.$d['id'].'">
+														<button type="submit" class="btn btn-md btn-warning btn-block" disabled><i class="fa fa-star"></i> Ranking '.$ranking.'</button>
+													</form>
+												</td>
+												<td>
+													<form action="ideas_abc.php" method="post">
+														<input type="hidden" name="opcion" value="2">
+														<input type="hidden" name="id" value="'.$d['id'].'">
+														<button type="submit" class="btn btn-md btn-success btn-block" disabled><i class="fa fa-pencil"></i> Editar</button>
+													</form>
+												</td>
+												<td> 
+													<form action="ideas_abc.php" method="post">
+														<input type="hidden" name="opcion" value="3">
+														<input type="hidden" name="id" value="'.$d['id'].'">
+														<button type="submit" class="btn btn-md btn-danger btn-block" disabled><i class="fa fa-trash"></i> Eliminar</button>
+													</form>
+												</td>';
+											}else if ($_SESSION['nivel'] == 5 )
 											{
 												echo '
 												<td>'.$fecha_evaluacion.'</td>

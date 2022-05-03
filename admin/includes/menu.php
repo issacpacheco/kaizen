@@ -148,6 +148,32 @@
     </ul>
 	<?php
     }
+    //Comite
+	if ($_SESSION['nivel']==5)
+	{
+	?>
+    <ul class="nav primary">
+        <li>
+            <a href="pr-ranking.php">
+                <i class="fa fa-lightbulb-o"></i>
+                <span>Puntaje</span>
+            </a>
+        </li>
+        <li>
+            <a href="ideas.php">
+                <i class="fa fa-lightbulb-o"></i>
+                <span>Ideas Administrativas</span>
+            </a>
+        </li>
+        <li>
+            <a href="ideas.php">
+                <i class="fa fa-lightbulb-o"></i>
+                <span>Ideas Estaciones</span>
+            </a>
+        </li>
+    </ul>
+	<?php
+    }
 	?>
     <div class="time text-center">
         <h5 class="current-time2">&nbsp;</h5>
