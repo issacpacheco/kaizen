@@ -44,6 +44,12 @@
 						<span>Clasificación</span>
 					</a>
 				</li>
+                <li>
+					<a href="pr-incentivos.php">
+                        <i class="fa fa-barcode"></i>
+						<span>Articulos</span>
+					</a>
+				</li>
             </ul>
         </li>
         <li class="nav-item-expandable">

@@ -96,11 +96,17 @@ else if (isset($_POST['id']))
 										</div>
 									</div>
 								</div>
-								<div class="row">										
-									<div class="form-wrapper col-sm-12">
+								<div class="row">
+									<div class="form-wrapper col-sm-8">
 										<label>Promotor</label>
 										<div class="form-group">
 											<input type="text" class="form-control" name="promotor" id="promotor" placeholder="Promotor" value="<?php echo $d['promotor'];?>">
+										</div>
+									</div>
+									<div class="form-wrapper col-sm-4">
+										<label>Puntos</label>
+										<div class="form-group">
+											<input type="text" class="form-control" name="puntos" id="puntos" placeholder="puntos" value="<?php echo $d['puntos'];?>">
 										</div>
 									</div>
 								</div>

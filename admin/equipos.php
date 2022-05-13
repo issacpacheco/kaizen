@@ -25,7 +25,8 @@ if (isset($_POST['editar']))
 	if(mysqli_query($conexion,"UPDATE $tabla SET 
 		nombre = '" . $_POST[ 'nombre' ] . "',
 		promotor = '" . $_POST[ 'promotor' ] . "',
-		tipo = '" . $_POST[ 'tipo' ] . "'
+		tipo = '" . $_POST[ 'tipo' ] . "',
+		puntos = '".$_POST[ 'puntos' ]."'
 		WHERE id = '".$_POST['editar']."' LIMIT 1"))
 	{
 		if ($_FILES['imagen']['type'] == "image/jpeg" && $_FILES['imagen']['size'] < 5000000)
@@ -110,6 +111,7 @@ if (isset($_POST['eliminar']))
                                         <tr>
 											<th> Logo </th>
 											<th> Nombre </th>
+											<th> Puntaje </th>
 											<th> Promotor </th>
 											<th> <i class="fa fa-pencil"></i> </th>
 											<th> <i class="fa fa-trash"></i> </th>
@@ -129,6 +131,7 @@ if (isset($_POST['eliminar']))
 											<tr class="odd">
 												<td><img src="' . $img . '" class="img-thumbnail" width="100"></td>
 												<td>'.$d['nombre'].'</td>
+												<td>'.$d['puntos'].' - Puntos</td>
 												<td>'.$d['promotor'].'</td>
 												<td>
 													<form action="'.$tabla.'_abc.php" method="post">
