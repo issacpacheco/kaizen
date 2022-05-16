@@ -11,7 +11,7 @@
  Target Server Version : 100422
  File Encoding         : 65001
 
- Date: 03/05/2022 16:11:55
+ Date: 16/05/2022 14:31:43
 */
 
 SET NAMES utf8mb4;
@@ -95,7 +95,7 @@ CREATE TABLE `equipos`  (
 -- ----------------------------
 -- Records of equipos
 -- ----------------------------
-INSERT INTO `equipos` VALUES (1, 'Aguilas', 'Christhian Sosa', 2, NULL);
+INSERT INTO `equipos` VALUES (1, 'Aguilas', 'Christhian Sosa', 2, 1500);
 
 -- ----------------------------
 -- Table structure for evaluacion
@@ -242,13 +242,15 @@ CREATE TABLE `productos`  (
   `estatus` int(11) NULL DEFAULT NULL,
   `foto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of productos
 -- ----------------------------
 INSERT INTO `productos` VALUES (1, 'producto 1', 'producto 1 de prueba', 200, 1, 'producto1.png');
 INSERT INTO `productos` VALUES (2, 'producto 2', 'producto 2 de prueba', 500, 1, 'producto1.png');
+INSERT INTO `productos` VALUES (3, 'producto 3', 'producto 3', 300, 1, '4gugd_portada-imperio.jpg');
+INSERT INTO `productos` VALUES (4, 'producto 4', 'producto 4 en prueba', 400, 1, NULL);
 
 -- ----------------------------
 -- Table structure for ranking

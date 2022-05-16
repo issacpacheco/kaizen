@@ -9,6 +9,12 @@ class productos extends mysqlconsultas{
         return $res;
     }
 
+    public function obtener_material($id){
+        $qry = "SELECT  * FROM productos WHERE id = '$id'";
+        $res = $this->consulta($qry);
+        return $res;
+    }
+
 }
 
 
