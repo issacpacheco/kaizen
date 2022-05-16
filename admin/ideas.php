@@ -293,6 +293,7 @@ if (isset($_POST['ranking']))
 											<th> <i class="fa fa-star"></i> </th>
 											<th> <i class="fa fa-pencil"></i> </th>
 											<th> <i class="fa fa-trash"></i> </th>
+											<th> Comité </th>
 											<?php
 											}
 											else if ($_SESSION['nivel']==2)
@@ -401,6 +402,7 @@ if (isset($_POST['ranking']))
 												<td>'.($d['status']==1?'Generada':'Implementada').'</td>';
 											if ($_SESSION['nivel'] == 1 )
 											{
+												if($d['tipo_idea'] == 1){$select1 = "selected";}else if($d['tipo_idea'] == 2){$select2 = "selected";}else{$select3 = "selected";}
 												echo '
 												<td>'.$fecha_evaluacion.'</td>
 												<td>
@@ -425,9 +427,16 @@ if (isset($_POST['ranking']))
 												<td> 
 													<form action="ideas_abc.php" method="post">
 														<input type="hidden" name="opcion" value="3">
-														<input type="hidden" name="id" value="'.$d['id'].'">
+														<input type="hidden" name="id" value="'.$d['id'].'" id="id_idea">
 														<button type="submit" class="btn btn-md btn-danger btn-block"><i class="fa fa-trash"></i> Eliminar</button>
 													</form>
+												</td>
+												<td> 
+													<select class="form-control" onchange="modificar_idea();" id="tipo_idea" name="tipo_idea">
+														<option value="0" '.$select3.'>Seleccione estacion o administración</option>	
+														<option value="1" '.$select1.'>ADMON</option>
+														<option value="2" '.$select2.'>ESTACIONES</option>
+													</select>
 												</td>';
 											}
 											else if ($_SESSION['nivel']==2)
@@ -521,9 +530,16 @@ if (isset($_POST['ranking']))
 												<td> 
 													<form action="ideas_abc.php" method="post">
 														<input type="hidden" name="opcion" value="3">
-														<input type="hidden" name="id" value="'.$d['id'].'">
+														<input type="hidden" name="id" value="'.$d['id'].'" id="id_idea">
 														<button type="submit" class="btn btn-md btn-danger btn-block" disabled><i class="fa fa-trash"></i> Eliminar</button>
 													</form>
+												</td>
+												<td> 
+													<select class="form-control" onchange="modificar_idea();" id="tipo_idea" name="tipo_idea">
+														<option value="0" '.$select3.'>Seleccione estacion o administración</option>	
+														<option value="1" '.$select1.'>ADMON</option>
+														<option value="2" '.$select2.'>ESTACIONES</option>
+													</select>
 												</td>';
 											}else if ($_SESSION['nivel'] == 5 )
 											{
@@ -651,6 +667,25 @@ if (isset($_POST['ranking']))
 					}else{
 						console.log("Se quita el check");
 					}
+				}
+
+				function modificar_idea(){
+					var tipo = document.getElementById("tipo_idea").value;
+					var id	 = document.getElementById("id_idea").value;
+					$.ajax({
+						type: "post",
+						url: "ajax-save/idea-edit.php",
+						data: {tipo: tipo, id: id},
+						success: function(response){
+							Swal.fire({
+								position: 'top-end',
+								icon: 'success',
+								title: 'Modificado con exito',
+								showConfirmButton: false,
+								timer: 1500
+							})
+						}
+					})
 				}
 			</script>            
         </div>
