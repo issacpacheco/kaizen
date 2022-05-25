@@ -11,7 +11,7 @@
  Target Server Version : 100422
  File Encoding         : 65001
 
- Date: 16/05/2022 14:31:43
+ Date: 25/05/2022 16:57:13
 */
 
 SET NAMES utf8mb4;
@@ -199,17 +199,18 @@ CREATE TABLE `ideas`  (
   `inversion` int(11) NULL DEFAULT NULL,
   `beneficio` int(11) NULL DEFAULT NULL,
   `estatus_participacion` int(2) NULL DEFAULT NULL,
+  `tipo_idea` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = MyISAM AUTO_INCREMENT = 6 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of ideas
 -- ----------------------------
-INSERT INTO `ideas` VALUES (1, 1, 3, 'Prueba', 12, 2021, 1, '', 1, '0000-00-00', 'fs', 'fsdf', 'fsd', NULL, NULL, NULL, NULL);
-INSERT INTO `ideas` VALUES (2, 1, 3, 'Idea Enero 2022', 1, 2022, 1, '', 1, '0000-00-00', 'dqwdqw', 'eqweqw', 'eqwe', NULL, NULL, NULL, NULL);
-INSERT INTO `ideas` VALUES (3, 1, 3, 'Prueba diciembre 2021', 12, 2021, 2, 'Sistemas', 2, '0000-00-00', 'sadas', 'das', 'dasd', NULL, NULL, NULL, NULL);
-INSERT INTO `ideas` VALUES (4, 1, 3, 'Prueba diciembre 2021', 12, 2021, 1, '', 1, '0000-00-00', '', '', '', NULL, NULL, NULL, NULL);
-INSERT INTO `ideas` VALUES (5, 1, 3, 'ONE SMART', 4, 2022, 1, '', 1, '0000-00-00', 'HOLA MUNDO', 'HOLA MUNDO', 'HOLA MUNDO', 3, 2754, 3337, 1);
+INSERT INTO `ideas` VALUES (1, 1, 3, 'Prueba', 12, 2021, 1, '', 1, '0000-00-00', 'fs', 'fsdf', 'fsd', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `ideas` VALUES (2, 1, 3, 'Idea Enero 2022', 1, 2022, 1, '', 1, '0000-00-00', 'dqwdqw', 'eqweqw', 'eqwe', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ideas` VALUES (3, 1, 3, 'Prueba diciembre 2021', 12, 2021, 2, 'Sistemas', 2, '0000-00-00', 'sadas', 'das', 'dasd', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ideas` VALUES (4, 1, 3, 'Prueba diciembre 2021', 12, 2021, 1, '', 1, '0000-00-00', '', '', '', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `ideas` VALUES (5, 1, 3, 'ONE SMART', 4, 2022, 1, '', 1, '0000-00-00', 'HOLA MUNDO', 'HOLA MUNDO', 'HOLA MUNDO', 3, 2754, 3337, 1, NULL);
 
 -- ----------------------------
 -- Table structure for nivel_usuarios
