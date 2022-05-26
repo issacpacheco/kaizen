@@ -54,7 +54,7 @@ $cproductos   = $fn    -> cuentarray($productos);
 
     <!-- Main content-->
     <div class="content">
-        <div class="container-fluid" id="contenedor">
+        <div class="container-fluid" id="">
             <div class="col-sm-12">
                 <div class="panel">
                     <div class="row panel-body">
@@ -67,20 +67,26 @@ $cproductos   = $fn    -> cuentarray($productos);
                             <div class="panel-body row">
                                 <?php if($_SESSION['nivel'] == 3 || $_SESSION['nivel'] == 4){ ?>
                                 <div class="form-wrapper col-sm-4">
-                                    <label for="">Trismestre</label>
+                                    <label for="">Trimestre</label>
                                     <div class="form-group">
-                                        <select name="trismestre" id="trismestre" class="form-control">
+                                        <select name="trimestre" id="trimestre" class="form-control">
                                             <option value="0">Todos</option>
-                                            <option value="1">1</option>
+                                            <option value="1">1 Trimestre</option>
+                                            <option value="2">2 Trimestre</option>
+                                            <option value="3">3 Trimestre</option>
+                                            <option value="4">4 Trimestre</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <label for="">Año</label>
                                     <div class="form-group">
-                                        <select name="trismestre" id="trismestre" class="form-control">
+                                        <select name="anio" id="anio" class="form-control">
                                             <option value="0">Seleccione un año</option>
-                                            <option value="1">1</option>
+                                            <?php for($i = 0, $año = 2021; $i < 10; $i++){ 
+                                                $años = $año + $i;?>
+                                            <option value="<?php echo $años; ?>"><?php echo $años; ?></option>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -88,7 +94,7 @@ $cproductos   = $fn    -> cuentarray($productos);
                                 <div class="col-sm-4">
                                     <label for="">Tipo</label>
                                     <div class="form-group">
-                                        <select name="trismestre" id="trismestre" class="form-control">
+                                        <select name="tipo" id="tipo" class="form-control">
                                             <option value="0">Seleccione un tipo</option>
                                             <?php if($_SESSION['nivel'] == 3 || $_SESSION['nivel'] == 4){ ?>
                                             <option value="1">Equipo</option>
@@ -101,55 +107,15 @@ $cproductos   = $fn    -> cuentarray($productos);
                                         </select>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <button type="button" onclick="obtener_ranking();" class="btn btn-success btn-lg btn-block"><i class="fa fa-plus"></i> Obtener información </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="panel-body">
-                        <form action="" method="POST">
-                            <?php if($_SESSION['nivel'] == 3 || $_SESSION['nivel'] == 4){ ?>
-                            <table class="table table-striped table-bordered table-hover" id="tabla">
-                                <thead>
-                                    <tr>
-                                        <th>Ranking</th>
-                                        <th>Puntos</th>
-                                        <th>Equipo o Generador</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php for($i = 0; $i < $cproductos; $i++){ ?>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
-                            <?php } ?>
-                            <?php if($_SESSION['nivel'] == 5){ ?>
-                            <table class="table table-striped table-bordered table-hover" id="tabla">
-                                <thead>
-                                    <tr>
-                                        <th>Ranking</th>
-                                        <th>Puntos</th>
-                                        <th>Equipo</th>
-                                        <th>Nombre de la idea</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php for($i = 0; $i < $cproductos; $i++){ ?>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
-                            <?php } ?>
-                        </form>
-                    </div>
+                    <div class="panel-body" id="contenedor"></div>
                 </div>
             </div>
         </div>
@@ -210,7 +176,20 @@ $cproductos   = $fn    -> cuentarray($productos);
 						"fixedColumns": false,
 						"responsive": true,
 					} );
-				});	
+				});
+                function obtener_ranking(){
+                    var trimestre   = document.getElementById("trimestre").value;
+                    var anio        = document.getElementById("anio").value;
+                    var tipo        = document.getElementById("tipo").value;
+                    $.ajax({
+                        type: 'post',
+                        url: 'ajax-get/obtener-ranking.php',
+                        data: {trimestre: trimestre, anio: anio, tipo: tipo},
+                        success: function(response){
+                            $("#contenedor").html(response);
+                        }
+                    })
+                }
 			</script>
         </div>
 
