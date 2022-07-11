@@ -21,11 +21,26 @@ if(isset($_POST['btnAccion'])){
                 );
                 $_SESSION['carrito'][0] = $listaProductos;
                 echo '<script type="text/javascript">';
-                echo 'setTimeout(function () {Swal.fire({html: "Listo!",
-                    confirmButtonColor: "#FF7300",
-                    background: "#211F20",
-                    icon: "success"
-                  });';
+                echo 'setTimeout(function () { 
+                        var punto = document.getElementById("puntos");
+                        var puntos = punto.textContent;
+                        var costo = '.$_POST['costo'].'
+                        var totalnuevo = Number(puntos) - Number(costo * '.$_POST['cantidad'].');
+                        console.log(totalnuevo);
+                        $("#puntos").html(totalnuevo);
+                        $.ajax({
+                            type: "post",
+                            url: "ajax-edit/nuevos-punto.php",
+                            data: {puntos: totalnuevo},
+                            success: function(response){
+                                console.log("exito!");
+                            }
+                        });
+                        Swal.fire({html: "Listo!",
+                            confirmButtonColor: "#FF7300",
+                            background: "#211F20",
+                            icon: "success"
+                        });';
                 echo '}, 1000);</script>';
             }else{
                 $idproducto=array_column($_SESSION['carrito'],"id");
@@ -33,7 +48,7 @@ if(isset($_POST['btnAccion'])){
                     echo '<script type="text/javascript">';
                     echo 'setTimeout(function () {Swal.fire({
                         icon: "error",
-                        confirmButtonColor: "#FF7300",
+                        confirmButtonColor: "#FF7300", 
                         background: "#211F20",
                         html: "<p>Ooops... Este producto ya se encuentra en tu carrito!</p>",
                       });';
@@ -49,11 +64,26 @@ if(isset($_POST['btnAccion'])){
                     );
                     $_SESSION['carrito'][$NumeroProd] = $listaProductos;
                     echo '<script type="text/javascript">';
-                    echo 'setTimeout(function () {Swal.fire({html: "Listo!",
-                        confirmButtonColor: "#FF7300",
-                        background: "#211F20",
-                        icon: "success"
-                        });';
+                    echo 'setTimeout(function () {
+                            var punto = document.getElementById("puntos");
+                            var puntos = punto.textContent;
+                            var costo = '.$_POST['costo'].'
+                            var totalnuevo = Number(puntos) - Number(costo * '.$_POST['cantidad'].');
+                            console.log(totalnuevo);
+                            $("#puntos").html(totalnuevo);
+                            $.ajax({
+                                type: "post",
+                                url: "ajax-edit/nuevos-punto.php",
+                                data: {puntos: totalnuevo},
+                                success: function(response){
+                                    console.log("exito!");
+                                }
+                            });
+                            Swal.fire({html: "Listo!",
+                            confirmButtonColor: "#FF7300",
+                            background: "#211F20",
+                            icon: "success"
+                            });';
                     echo '}, 1000);</script>';
                 }
             }
