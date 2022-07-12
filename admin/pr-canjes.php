@@ -1,6 +1,14 @@
 <?php 
 include("includes/config.php");
 include("class/allClass.php");
+
+use nsproductos\productos;
+use nsfunciones\funciones;
+$info = new productos();
+$fn = new funciones();
+
+$canjes = $info->obtener_canjes();
+$ccanjes = $fn->cuentarray($canjes);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -49,46 +57,33 @@ include("class/allClass.php");
                 <div class="col-sm-12">
                     <div class="panel">
                         <div class="panel-heading">
-                            <?php echo $modulo;?>
+                            <?php echo "Centro de canjes";?>
                         </div>
                         <div class="panel-body">
 							<div class="row">
 								<div class="col-lg-12">
-									
-									<button onclick="saveInfo('producto-carrito-add', 'pr-incentivos', this);" class="btn btn-success btn-lg btn-block"> Canjear </button>
-									
 								</div>
 							</div>
 							<br>
-
-
                             <div>
-                                <table class="table table-striped table-bordered table-hover">
+                                <table class="table table-striped table-bordered table-hover" id="tabla">
                                     <thead>
                                         <tr>
-											<th> Producto </th>
-											<th> Descripcion </th>
-											<th> Cantidad </th>
-                                            <th> Eliminar </th>
+											<th> Equipo </th>
+											<th> Fecha solicitud </th>
+											<th> Folio de canje </th>
+											<th> <i class="fa fa-pencil"></i> </th>
+											<th> <i class="fa fa-trash"></i> </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php 
-                                            $json = json_encode($_SESSION['carrito']);
-                                            $json_de = json_decode($json,true);
-                                            $contador = count($json_de);
-                                        ?>
-										<?php for($i = 0; $i < $contador; $i++){ ?>
+										<?php for($i = 0; $i < $ccanjes; $i++){ ?>
                                             <tr>
-                                                <td><?php echo $json_de[$i]['nombre_producto']; ?></td>
-                                                <td><?php echo $json_de[$i]['descripcion']; ?></td>
-                                                <td><?php echo $json_de[$i]['cantidad']; ?></td>
-                                                <td>
-                                                    <form action="#" method="POST">
-                                                        <input type="hidden" name="id_producto" value="<?php echo $json_de[$i]['id']; ?>">
-                                                        <button class="btn btn-danger btnservices fw-light white fw-bold" value="Eliminar" name="btnAccion" style="margin-bottom: 1rem;">Eliminar</button>
-                                                    </form>
-                                                </td>
+                                                <td><?php echo $canjes['equipo'][$i]; ?></td>
+                                                <td><?php echo $canjes['fecha'][$i]; ?></td>
+                                                <td><?php echo $canjes['folio'][$i]; ?></td>
+                                                <td><button onclick="universalLoad(this)" data-postload="0" data-returnpage="pr-canjes" data-form="" data-page="productos-canjes-edit" data-carpeta="ajax-edit" data-load="contenedor" data-valores="" data-id="<?php echo $canjes["id"][$i]; ?>" type="submit" class="btn btn-md btn-success btn-block"><i class="fa fa-pencil"></i></button></td>
+                                                <td><button type="submit" class="btn btn-md btn-danger btn-block"><i class="fa fa-trash"></i></button></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
@@ -112,8 +107,6 @@ include("class/allClass.php");
         <script src="addons/jquery-ui/jquery-ui.min.js"></script>
         <script src="addons/bootstrap/js/bootstrap.min.js"></script>
 		<script src="addons/fullcalendar/lib/moment.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.0/sweetalert2.js"></script>
         <script src="addons/pacejs/pace.min.js"></script>
 		<!-- DataTables -->
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>

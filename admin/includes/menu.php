@@ -50,6 +50,12 @@
 						<span>Articulos</span>
 					</a>
 				</li>
+                <li>
+					<a href="pr-canjes.php">
+                        <i class="fa fa-barcode"></i>
+						<span>Centro de canje</span>
+					</a>
+				</li>
             </ul>
         </li>
         <li class="nav-item-expandable">

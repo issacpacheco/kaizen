@@ -107,11 +107,11 @@ if(isset($_POST['btnAccion'])){
                         if (result.isConfirmed) {
                             $.ajax({
                                 type: 'POST',
-                                url: 'ajax-save/eliminar-tour-carrito.php',
+                                url: 'ajax-save/eliminar-producto-carrito.php',
                                 data: 'id=".$id."&estatus=1',
                                 success: function (response) {
                                     Swal.fire({
-                                        html: 'El tour ".$listaProductos['nombre']." ha sido eliminado de la lista',
+                                        html: 'El producto ".$listaProductos['nombre']." ha sido eliminado de la lista',
                                         background: '#211F20',
                                         icon: 'success',
                                         confirmButtonColor: '#FF7300',
@@ -121,6 +121,20 @@ if(isset($_POST['btnAccion'])){
                                             reload();
                                         }
                                     })
+                                    var punto = document.getElementById('puntos');
+                                    var puntos = punto.textContent;
+                                    var costo = ".$listaProductos['costo']."
+                                    var totalnuevo = Number(puntos) + Number(costo * ".$listaProductos['cantidad'].");
+                                    console.log(totalnuevo);
+                                    $('#puntos').html(totalnuevo);
+                                    $.ajax({
+                                        type: 'post',
+                                        url: 'ajax-edit/nuevos-punto.php',
+                                        data: {puntos: totalnuevo},
+                                        success: function(response){
+                                            console.log('exito!');
+                                        }
+                                    });
                                 },
                                 failure: function (response) {
                                     //----some code here-----//

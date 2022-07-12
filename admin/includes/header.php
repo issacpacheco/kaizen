@@ -8,9 +8,11 @@
 							<i class="fa fa-home"></i>
 						</a>
 					</li>
+                    <?php if($_SESSION['nivel'] == 3){ ?>
                     <li>
                         Puntos otorgados: <span id="puntos"><?php echo $_SESSION['puntos']; ?></span>
                     </li>
+                    <?php } ?>
         		</ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="">
