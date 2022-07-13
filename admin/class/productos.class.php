@@ -32,6 +32,20 @@ class productos extends mysqlconsultas{
         return $res;
     }
 
+    public function obtener_listado($id){
+        $qry = "SELECT * FROM canjeo_detalle WHERE id_canjeo = $id";
+        $res = $this->consulta($qry);
+        return $res;
+    }
+
+    public function obtener_puntos($id){
+        $qry = "SELECT e.id, e.puntos FROM equipos e
+                LEFT JOIN canjeo_productos c ON c.id_equipo = e.id 
+                WHERE c.id = $id";
+        $res = $this->consulta($qry);
+        return $res;
+    }
+
 }
 
 

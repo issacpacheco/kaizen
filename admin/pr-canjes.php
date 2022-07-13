@@ -83,7 +83,7 @@ $ccanjes = $fn->cuentarray($canjes);
                                                 <td><?php echo $canjes['fecha'][$i]; ?></td>
                                                 <td><?php echo $canjes['folio'][$i]; ?></td>
                                                 <td><button onclick="universalLoad(this)" data-postload="0" data-returnpage="pr-canjes" data-form="" data-page="productos-canjes-edit" data-carpeta="ajax-edit" data-load="contenedor" data-valores="" data-id="<?php echo $canjes["id"][$i]; ?>" type="submit" class="btn btn-md btn-success btn-block"><i class="fa fa-pencil"></i></button></td>
-                                                <td><button type="submit" class="btn btn-md btn-danger btn-block"><i class="fa fa-trash"></i></button></td>
+                                                <td><button onclick="cancelarCanje(<?php echo $canjes['id'][$i]; ?>);" type="submit" class="btn btn-md btn-danger btn-block"><i class="fa fa-trash"></i> Cancelar</button></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
@@ -134,7 +134,19 @@ $ccanjes = $fn->cuentarray($canjes);
 						"fixedColumns": false,
 						"responsive": true,
 					} );
-				});	
+				});
+                
+                function cancelarCanje(id){
+                    var postpagina = "pr-canjes"
+                    $.ajax({
+                        type: "post",
+                        url: "ajax-delete/cancelar-canjes.php",
+                        data: {id: id},
+                        success: function(response){
+                            window.location.href = "pr-canjes.php";
+                        }
+                    })
+                }
 			</script>            
         </div>
 

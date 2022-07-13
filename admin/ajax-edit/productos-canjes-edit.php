@@ -30,13 +30,13 @@ $cproducto      = $fn   -> cuentarray($producto);
                     <div class="form-wrapper col-sm-4">
                         <label>Nombre</label>
                         <div class="form-group">
-                            <input type="text" class="form-control validar" name="nombre" id="nombre" placeholder="Nombre" value="<?php echo $producto['producto'][0]; ?>" readonly>
+                            <input type="text" class="form-control validar" name="nombre" id="nombre" placeholder="Nombre" value="<?php echo $producto['producto'][$i]; ?>" readonly>
                         </div>
                     </div>
                     <div class="form-wrapper col-sm-4">
                         <label>Cantidad</label>
                         <div class="form-group">
-                            <input type="text" class="form-control" name="costo" id="costo" placeholder="Costo" value="<?php echo $producto['cantidad'][0]; ?>" readonly>
+                            <input type="text" class="form-control" name="costo" id="costo" placeholder="Costo" value="<?php echo $producto['cantidad'][$i]; ?>" readonly>
                         </div>
                     </div>
                     <div class="form-wrapper col-sm-4">
@@ -47,8 +47,8 @@ $cproducto      = $fn   -> cuentarray($producto);
                             <?php }else{ ?>
                             <select name="estatus" id="estatus" class="form-control">
                                 <option value="2" selected>Selecciona un estatus</option>
-                                <option value="1" <?php if($producto['estatus'][0] == 1){ echo "selected"; }?>>Solicitado</option>
-                                <option value="0" <?php if($producto['estatus'][0] == 0){ echo "selected"; }?>>Entregado</option>
+                                <option value="1" <?php if($producto['estatus'][$i] == 1){ echo "selected"; }?>>Solicitado</option>
+                                <option value="0" <?php if($producto['estatus'][$i] == 0){ echo "selected"; }?>>Entregado</option>
                             </select>
                             <?php } ?>
                         </div>
