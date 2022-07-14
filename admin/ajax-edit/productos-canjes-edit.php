@@ -25,7 +25,7 @@ $cproducto      = $fn   -> cuentarray($producto);
         <div class="panel-body">
             <form id="frmRegistro">
                 <?php for($i = 0; $i < $cproducto; $i++){ ?>
-                <input type="hidden" name="idproducto" id="idproducto" value="<?php echo $id; ?>">
+                <input type="hidden" name="iddetalle[]" id="iddetalle" value="<?php echo $producto['id'][$i]; ?>">
                 <div class="row">
                     <div class="form-wrapper col-sm-4">
                         <label>Nombre</label>
@@ -44,11 +44,14 @@ $cproducto      = $fn   -> cuentarray($producto);
                         <div class="form-group">
                             <?php if($producto['estatus'][$i] == 2){ ?>
                                 <p>ENTREGADO</p>
+                            <?php }else if($producto['estatus'][$i] == 3){ ?>
+                                <p>CANCELADO</p>
                             <?php }else{ ?>
-                            <select name="estatus" id="estatus" class="form-control">
-                                <option value="2" selected>Selecciona un estatus</option>
+                            <select name="estatus[]" id="estatus" class="form-control">
+                                <option value="0" selected>Selecciona un estatus</option>
                                 <option value="1" <?php if($producto['estatus'][$i] == 1){ echo "selected"; }?>>Solicitado</option>
-                                <option value="0" <?php if($producto['estatus'][$i] == 0){ echo "selected"; }?>>Entregado</option>
+                                <option value="2" <?php if($producto['estatus'][$i] == 2){ echo "selected"; }?>>Entregado</option>
+                                <option value="3" <?php if($producto['estatus'][$i] == 3){ echo "selected"; }?>>Cancelado</option>
                             </select>
                             <?php } ?>
                         </div>
@@ -57,7 +60,7 @@ $cproducto      = $fn   -> cuentarray($producto);
                 </div>
                 <?php } ?>
                 <div class="mright textright">
-                    <button type="button" class="btnRegresar right btngral" onclick="saveInfo('productos-canje-edit', 'pr-canjes', this);">
+                    <button type="button" class="btnRegresar right btngral" onclick="saveInfo('producto-canje-edit', 'pr-canjes', this);">
                         <span class="letrablanca font14">Guardar</span>
                     </button>
                 </div>
